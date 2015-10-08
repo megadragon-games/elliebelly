@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>Ellie-Belly</title>
+	<link href="eb-styles.css" rel="stylesheet" type="text/css" />
+	<script src="eb-mechanics.js"></script>
+</head>
+
+<body onload="batchSpell()">
+	<div class="centerPanel" style="min-height: 50px;">
+		<p id="headlineArea"></p>
+	</div>
+	<div class="centerPanel">
+		Weight: <span id="weightDisplay">0</span><br/>
+		<button onclick="gain(1)">Open wide, Ellie-belly!</button>
+	</div>
+	<div class="centerPanel upgrade" onmouseover="update('tooltipArea',charrMouseover);" onmouseout="update('tooltipArea','');">
+		<p>Servant Charr <span id="charrDisplay">0</span></p>
+		<button onclick="buy('charr')">Hire (<span id="charrCost">0</span>)</button>
+	</div>
+	<div class="centerPanel upgrade" onmouseover="update('tooltipArea',cowMouseover);" onmouseout="update('tooltipArea','');">
+		<p>Dairy Cow <span id="cowDisplay">0</span></p>
+		<button onclick="buy('cow')">Hire (<span id="cowCost">0</span>)</button>
+	</div>
+	<div class="centerPanel upgrade" onmouseover="update('tooltipArea',adderMouseover);" onmouseout="update('tooltipArea','');">
+		<p>Puff Adder <span id="adderDisplay">0</span></p>
+		<button onclick="buy('adder')">Hire (<span id="adderCost">0</span>)</button>
+	</div>
+	<div class="centerPanel upgrade" onmouseover="update('tooltipArea',barrelMouseover);" onmouseout="update('tooltipArea','');">
+		<p>Replenishing Barrel <span id="barrelDisplay">0</span></p>
+		<button onclick="buy('barrel')">Buy (<span id="barrelCost">0</span>)</button>
+	</div>
+	<div class="centerPanel upgrade" onmouseover="update('tooltipArea',expndrMouseover);" onmouseout="update('tooltipArea','');">
+		<p>Molecular Expander <span id="expndrDisplay">0</span></p>
+		<button onclick="buy('expndr')">Buy (<span id="expndrCost">0</span>)</button>
+	</div>
+	<div class="centerPanel upgrade" onmouseover="update('tooltipArea',planarMouseover);" onmouseout="update('tooltipArea','');">
+		<p>Planar Pudge <span id="planarDisplay">0</span></p>
+		<button onclick="buy('planar')">Cast (<span id="planarCost">0</span>)</button>
+	</div>
+	<div class="centerPanel" style="min-height:100px;">
+		<p id="tooltipArea"></p>
+	</div>
+	<div class="centerPanel">
+		<button onclick="save()">Save</button>
+		<button onclick="load()">Load</button>
+		<button onclick="localStorage.removeItem('saveFile');">Delete Save</button>
+	</div>
+
+</body>
+
+</html>
