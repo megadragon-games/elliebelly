@@ -69,6 +69,7 @@ function pickFromArray(array){
 function gain(amount){
 	pounds = pounds + amount;
 	update("weightDisplay", format(Math.floor(pounds)) + " lb");
+	updateButtons();
 }
 
 // CALCULATE COST calculates the cost of a given upgrade. All upgrades rise in
@@ -154,9 +155,22 @@ function talk(flag){
 	update("headlineArea",tickerText);
 }
 
+// UPDATE BUTTONS
+function updateButtons(){
+	for(x = 0; x < upgradeTypes.length; x++){
+		var item = upgradeTypes[x];
+		var upgradeCost = calculateCost(window[item + "Base"],defaultScale,window[item + "s"]);
+		if(pounds >= upgradeCost && (pounds - upgradeCost) >= ELENA_LOWER_LIMIT)
+			$("#" + item + "Buy").removeClass("disabled");
+		else
+			$("#" + item + "Buy").addClass("disabled");
+	}
+}
+
 // The GAME LOOP fires once every second, performing and resolving repeating actions.
 function gameLoop(){
 	gain(gainRate);
+
 	tickerAge++;
 	if(tickerAge >= tickerExpires){
 		tickerExpires = randomRange(10,20);
@@ -223,3 +237,8 @@ function load(){
 
 // Game loop runs every second (1000 milliseconds)
 window.setInterval(gameLoop,1000);
+
+// Initialize tooltips
+$(document).ready(function(){
+	$('[data-toggle="tooltip"]').tooltip();
+});

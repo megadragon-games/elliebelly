@@ -1,10 +1,5 @@
 @charset "utf-8";
 
-p{
-	margin: 0;
-	padding: 0;
-}
-
 div.centerPanel{
 	margin: 0 auto;
 	width: 50%;
@@ -42,4 +37,21 @@ span.rightFloat{
 
 .elena{
 	color: #B0E0E6;
+}
+
+.smallcaps{
+	font-variant: small-caps;
+}
+
+div.panel-heading span:first-of-type{
+	float: right;
+	padding-right: 5px;
+}
+
+.shadow{
+	text-shadow: 1px 1px gray;
+}
+
+#headlineArea{
+	min-height: 40px;
 }

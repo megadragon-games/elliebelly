@@ -1,51 +1,110 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Ellie-Belly</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+	<!-- jQuery library -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+	<!-- Latest compiled JavaScript -->
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 	<link href="eb-styles.css" rel="stylesheet" type="text/css" />
 	<script src="eb-mechanics.js"></script>
 </head>
 
 <body onload="batchSpell()">
-	<div class="centerPanel" style="min-height: 50px;">
-		<p id="headlineArea"></p>
+	<div class="container">
+	<div class="jumbotron">
+		<p class="text-center"><span class="glyphicon glyphicon-scale" aria-hidden="true"></span>
+			<span id="weightDisplay">0</span></p>
+		<p class="text-center">
+			<button class="btn btn-lg btn-danger" onclick="gain(1)">Open wide, Ellie-belly!</button>
+		<p class="text-center shadow" id="headlineArea"></p>
 	</div>
-	<div class="centerPanel">
-		Weight: <span id="weightDisplay">0</span><br/>
-		<button onclick="gain(1)">Open wide, Ellie-belly!</button>
+
+	<div class="row">
+		<div class="col-md-6">
+			<div class="panel panel-info" onmouseover="update('tooltipArea',charrMouseover);" onmouseout="update('tooltipArea','');">
+  			<div class="panel-heading smallcaps">Servant Charr <span id="charrDisplay">0</span></div>
+  			<div class="panel-body text-center">
+    		<button class="btn btn-primary btn-sm" id="charrBuy" onclick="buy('charr')">Hire (<span id="charrCost">0</span>)</button>
+  			</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="panel panel-info" onmouseover="update('tooltipArea',cowMouseover);" onmouseout="update('tooltipArea','');">
+  			<div class="panel-heading smallcaps">Dairy Cow <span id="cowDisplay">0</span></div>
+  			<div class="panel-body text-center">
+    		<button class="btn btn-primary btn-sm" id="cowBuy" onclick="buy('cow')">Hire (<span id="cowCost">0</span>)</button>
+  			</div>
+			</div>
+		</div>
+
+		<div class="col-md-6">
+			<div class="panel panel-info" onmouseover="update('tooltipArea',adderMouseover);" onmouseout="update('tooltipArea','');">
+  			<div class="panel-heading smallcaps">Puff Adder <span id="adderDisplay">0</span></div>
+  			<div class="panel-body text-center">
+    		<button class="btn btn-primary btn-sm" id="adderBuy" onclick="buy('adder')">Hire (<span id="adderCost">0</span>)</button>
+  			</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="panel panel-info" onmouseover="update('tooltipArea',barrelMouseover);" onmouseout="update('tooltipArea','');">
+  			<div class="panel-heading smallcaps">Replenishing Barrel <span id="barrelDisplay">0</span></div>
+  			<div class="panel-body text-center">
+    		<button class="btn btn-primary btn-sm" id="barrelBuy" onclick="buy('barrel')">Buy (<span id="barrelCost">0</span>)</button>
+  			</div>
+			</div>
+		</div>
+
+		<div class="col-md-6">
+			<div class="panel panel-info" onmouseover="update('tooltipArea',expndrMouseover);" onmouseout="update('tooltipArea','');">
+  			<div class="panel-heading smallcaps">Molecular Expander <span id="expndrDisplay">0</span></div>
+  			<div class="panel-body text-center">
+    		<button class="btn btn-primary btn-sm" id="expndrBuy" onclick="buy('expndr')">Buy (<span id="expndrCost">0</span>)</button>
+  			</div>
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="panel panel-info" onmouseover="update('tooltipArea',planarMouseover);" onmouseout="update('tooltipArea','');">
+  			<div class="panel-heading smallcaps">Planar Pudge <span id="planarDisplay">0</span></div>
+  			<div class="panel-body text-center">
+    		<button class="btn btn-primary btn-sm" id="planarBuy" onclick="buy('planar')">Cast (<span id="planarCost">0</span>)</button>
+  			</div>
+			</div>
+		</div>
 	</div>
-	<div class="centerPanel upgrade" onmouseover="update('tooltipArea',charrMouseover);" onmouseout="update('tooltipArea','');">
-		<p>Servant Charr <span id="charrDisplay">0</span></p>
-		<button onclick="buy('charr')">Hire (<span id="charrCost">0</span>)</button>
-	</div>
-	<div class="centerPanel upgrade" onmouseover="update('tooltipArea',cowMouseover);" onmouseout="update('tooltipArea','');">
-		<p>Dairy Cow <span id="cowDisplay">0</span></p>
-		<button onclick="buy('cow')">Hire (<span id="cowCost">0</span>)</button>
-	</div>
-	<div class="centerPanel upgrade" onmouseover="update('tooltipArea',adderMouseover);" onmouseout="update('tooltipArea','');">
-		<p>Puff Adder <span id="adderDisplay">0</span></p>
-		<button onclick="buy('adder')">Hire (<span id="adderCost">0</span>)</button>
-	</div>
-	<div class="centerPanel upgrade" onmouseover="update('tooltipArea',barrelMouseover);" onmouseout="update('tooltipArea','');">
-		<p>Replenishing Barrel <span id="barrelDisplay">0</span></p>
-		<button onclick="buy('barrel')">Buy (<span id="barrelCost">0</span>)</button>
-	</div>
-	<div class="centerPanel upgrade" onmouseover="update('tooltipArea',expndrMouseover);" onmouseout="update('tooltipArea','');">
-		<p>Molecular Expander <span id="expndrDisplay">0</span></p>
-		<button onclick="buy('expndr')">Buy (<span id="expndrCost">0</span>)</button>
-	</div>
-	<div class="centerPanel upgrade" onmouseover="update('tooltipArea',planarMouseover);" onmouseout="update('tooltipArea','');">
-		<p>Planar Pudge <span id="planarDisplay">0</span></p>
-		<button onclick="buy('planar')">Cast (<span id="planarCost">0</span>)</button>
-	</div>
-	<div class="centerPanel" style="min-height:100px;">
+
+	<div class="centerPanel" style="min-height:60px;">
 		<p id="tooltipArea"></p>
 	</div>
+
 	<div class="centerPanel">
-		<button onclick="save()">Save</button>
-		<button onclick="load()">Load</button>
-		<button onclick="localStorage.removeItem('saveFile');">Delete Save</button>
+		<button type="button" class="btn btn-primary btn-lg" onclick="save()"
+		data-toggle="tooltip" title="Save Belly">
+			<span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
+		</button>
+		<button type="button" class="btn btn-primary btn-lg" onclick="load()"
+		data-toggle="tooltip" title="Load Belly">
+			<span class="glyphicon glyphicon-floppy-open" aria-hidden="true"></span>
+		</button>
+		<button type="button" class="btn btn-primary btn-lg" onclick="localStorage.removeItem('saveFile');"
+		data-toggle="tooltip" title="Delete Saved Belly">
+			<span class="glyphicon glyphicon-floppy-remove" aria-hidden="true"></span>
+		</button>
 	</div>
+
+	<footer class="footer">
+		<div class="container">
+			<p>2015 Megadragon Games. Made with Bootstrap</p>
+		</div>
+	</footer>
 
 </body>
 
