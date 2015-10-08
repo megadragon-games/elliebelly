@@ -28,11 +28,9 @@ div.upgrade p{
 
 span.leftFloat{
 	float: left;
-	padding-left: 5px;
 }
 span.rightFloat{
 	float: right;
-	padding-right: 5px;
 }
 
 .elena{
@@ -54,4 +52,96 @@ div.panel-heading span:first-of-type{
 
 #headlineArea{
 	min-height: 40px;
+}
+
+.btn-purple {
+  color: #ffffff;
+  background-color: #611BBD;
+  border-color: #130269;
+}
+
+.btn-purple:hover,
+.btn-purple:focus,
+.btn-purple:active,
+.btn-purple.active,
+.open .dropdown-toggle.btn-purple {
+  color: #ffffff;
+  background-color: #49247A;
+  border-color: #130269;
+}
+
+.btn-purple:active,
+.btn-purple.active,
+.open .dropdown-toggle.btn-purple {
+  background-image: none;
+}
+
+.btn-purple.disabled,
+.btn-purple[disabled],
+fieldset[disabled] .btn-purple,
+.btn-purple.disabled:hover,
+.btn-purple[disabled]:hover,
+fieldset[disabled] .btn-purple:hover,
+.btn-purple.disabled:focus,
+.btn-purple[disabled]:focus,
+fieldset[disabled] .btn-purple:focus,
+.btn-purple.disabled:active,
+.btn-purple[disabled]:active,
+fieldset[disabled] .btn-purple:active,
+.btn-purple.disabled.active,
+.btn-purple[disabled].active,
+fieldset[disabled] .btn-purple.active {
+  background-color: #611BBD;
+  border-color: #130269;
+}
+
+.btn-purple .badge {
+  color: #611BBD;
+  background-color: #ffffff;
+}
+
+.btn-blue {
+  color: #ffffff;
+  background-color: #0033FF;
+  border-color: #2B43D9;
+}
+
+.btn-blue:hover,
+.btn-blue:focus,
+.btn-blue:active,
+.btn-blue.active,
+.open .dropdown-toggle.btn-blue {
+  color: #ffffff;
+  background-color: #2929E6;
+  border-color: #2B43D9;
+}
+
+.btn-blue:active,
+.btn-blue.active,
+.open .dropdown-toggle.btn-blue {
+  background-image: none;
+}
+
+.btn-blue.disabled,
+.btn-blue[disabled],
+fieldset[disabled] .btn-blue,
+.btn-blue.disabled:hover,
+.btn-blue[disabled]:hover,
+fieldset[disabled] .btn-blue:hover,
+.btn-blue.disabled:focus,
+.btn-blue[disabled]:focus,
+fieldset[disabled] .btn-blue:focus,
+.btn-blue.disabled:active,
+.btn-blue[disabled]:active,
+fieldset[disabled] .btn-blue:active,
+.btn-blue.disabled.active,
+.btn-blue[disabled].active,
+fieldset[disabled] .btn-blue.active {
+  background-color: #0033FF;
+  border-color: #2B43D9;
+}
+
+.btn-blue .badge {
+  color: #0033FF;
+  background-color: #ffffff;
 }
