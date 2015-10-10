@@ -31,51 +31,65 @@
 
 	<div class="row">
 		<div class="col-md-8">
-			<div class="well" style="min-height:120px;">
+			<div class="well well-sm well-info">
 				<p id="tooltipArea"></p>
 			</div>
 
-			<div class="centerPanel">
-		<button type="button" class="btn btn-blue btn-lg" onclick="save()"
-		data-toggle="tooltip" title="Save Belly">
-			<span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
-		</button>
-		<button type="button" class="btn btn-blue btn-lg" onclick="load()"
-		data-toggle="tooltip" title="Load Belly">
-			<span class="glyphicon glyphicon-floppy-open" aria-hidden="true"></span>
-		</button>
-		<button type="button" class="btn btn-blue btn-lg" onclick="localStorage.removeItem('saveFile');"
-		data-toggle="tooltip" title="Delete Saved Belly">
-			<span class="glyphicon glyphicon-floppy-remove" aria-hidden="true"></span>
-		</button>
-	</div>
+			<!-- To center a div within this column system you must account for both sides of the offset.
+			Furthermore, although this column is only eight "units", the total for items within this column
+			still needs to add up to twelve. 3 offset + 6 base + 3 offset = 12 total -->
+			<div class="col-md-6 col-md-offset-3">
+			<div class="panel panel-info text-center">
+				<div class="panel-heading smallcaps">Disk Options</div>
+				<div class="panel-body" style="padding: 0px;">
+					<!-- The innermost buttons need to be wrapped in a div of their own, or else (for some
+					reason) they slam together once they're hovered on and the tooltips appear. The styling
+					for this div does not seem to matter, originally it was text-align center and margin 0 auto
+					but even a vanilla div works fine. -->
+					<div>
+						<button type="button" class="btn btn-blue btn-lg" onclick="save()"
+						data-toggle="tooltip" title="Save Belly">
+							<span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
+						</button>
+						<button type="button" class="btn btn-blue btn-lg" onclick="load()"
+						data-toggle="tooltip" title="Load Belly">
+							<span class="glyphicon glyphicon-floppy-open" aria-hidden="true"></span>
+						</button>
+						<button type="button" class="btn btn-blue btn-lg" onclick="localStorage.removeItem('saveFile');"
+						data-toggle="tooltip" title="Delete Saved Belly">
+							<span class="glyphicon glyphicon-floppy-remove" aria-hidden="true"></span>
+						</button>
+					</div>
+				</div>
+			</div>
+			</div>
 		</div>
 
 		<div class="col-md-4">
 			<div class="list-group">
 				<button type="button" class="list-group-item list-group-item-info smallcaps" id="charrBuy" onclick="buy('charr');" onmouseover="update('tooltipArea',charrMouseover);" onmouseout="update('tooltipArea','');">
 					Servant Charr - <span id="charrCost"></span>
-					<span class="rightFloat" id="charrDisplay"></span>
+					<span class="pull-right" id="charrDisplay"></span>
 				</button>
 				<button type="button" class="list-group-item list-group-item-info smallcaps" id="cowBuy" onclick="buy('cow');" onmouseover="update('tooltipArea',cowMouseover);" onmouseout="update('tooltipArea','');">
 					Dairy Cow - <span id="cowCost"></span>
-					<span class="rightFloat" id="cowDisplay"></span>
+					<span class="pull-right" id="cowDisplay"></span>
 				</button>
 				<button type="button" class="list-group-item list-group-item-info smallcaps" id="adderBuy" onclick="buy('adder');" onmouseover="update('tooltipArea',adderMouseover);" onmouseout="update('tooltipArea','');">
 					Puff Adder - <span id="adderCost"></span>
-					<span class="rightFloat" id="adderDisplay"></span>
+					<span class="pull-right" id="adderDisplay"></span>
 				</button>
 				<button type="button" class="list-group-item list-group-item-info smallcaps" id="barrelBuy" onclick="buy('barrel');" onmouseover="update('tooltipArea',barrelMouseover);" onmouseout="update('tooltipArea','');">
 					Replenishing Barrel - <span id="barrelCost"></span>
-					<span class="rightFloat" id="barrelDisplay"></span>
+					<span class="pull-right" id="barrelDisplay"></span>
 				</button>
 				<button type="button" class="list-group-item list-group-item-info smallcaps" id="expndrBuy" onclick="buy('expndr');" onmouseover="update('tooltipArea',expndrMouseover);" onmouseout="update('tooltipArea','');">
 					Molecular Expander - <span id="expndrCost"></span>
-					<span class="rightFloat" id="expndrDisplay"></span>
+					<span class="pull-right" id="expndrDisplay"></span>
 				</button>
 				<button type="button" class="list-group-item list-group-item-info smallcaps" id="planarBuy" onclick="buy('planar');" onmouseover="update('tooltipArea',planarMouseover);" onmouseout="update('tooltipArea','');">
 					Planar Pudge - <span id="planarCost"></span>
-					<span class="rightFloat" id="planarDisplay"></span>
+					<span class="pull-right" id="planarDisplay"></span>
 				</button>
 			</div>
 		</div>

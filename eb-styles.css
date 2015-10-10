@@ -1,38 +1,11 @@
 @charset "utf-8";
 
-div.centerPanel{
-	margin: 0 auto;
-	width: 50%;
-	min-width: 100px;
-	text-align: center;
-	border: 1px solid black;
-	padding-bottom: 2px;
-	margin-bottom: 5px;
+/* STYLES BY ID */
+#headlineArea{
+	min-height: 40px;
 }
 
-div.upgrade p:first-of-type{
-	text-align: left;
-	font-variant: small-caps;
-	text-indent: 0px;
-	padding-left: 5px;
-}
-
-div.upgrade p:first-of-type span{
-	float: right;
-	padding-right: 5px;
-}
-
-div.upgrade p{
-	font-variant: normal;
-}
-
-span.leftFloat{
-	float: left;
-}
-span.rightFloat{
-	float: right;
-}
-
+/* GENERIC CLASSES */
 .elena{
 	color: #B0E0E6;
 }
@@ -41,19 +14,17 @@ span.rightFloat{
 	font-variant: small-caps;
 }
 
-div.panel-heading span:first-of-type{
-	float: right;
-	padding-right: 5px;
-}
-
 .shadow{
 	text-shadow: 1px 1px gray;
 }
 
-#headlineArea{
-	min-height: 40px;
+.noPadding{
+	padding: 0px;
 }
 
+/* BOOTSTRAP IMITATOR CLASSES */
+/* These classes imitate the style and naming conventions of the Bootstrap framework. They are made to
+extend the functionality of framework classes and provide custom variants. */
 .btn-purple {
   color: #ffffff;
   background-color: #611BBD;
@@ -144,4 +115,11 @@ fieldset[disabled] .btn-blue.active {
 .btn-blue .badge {
   color: #0033FF;
   background-color: #ffffff;
+}
+
+.well-info{
+	min-height: 120px;
+	color: #31708F;
+	background-color: #D9EDF7;
+	border-color: #BCE8F1;
 }
