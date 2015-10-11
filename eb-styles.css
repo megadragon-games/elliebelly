@@ -1,13 +1,33 @@
 @charset "utf-8";
 
+/* STYLES BY TAG */
+body{
+	font-family: "Chewy", cursive;
+	font-size: large;
+}
+
 /* STYLES BY ID */
 #headlineArea{
+	margin-top: 5px;
 	min-height: 40px;
 }
 
-/* GENERIC CLASSES */
-.elena{
+#elenaSpeechBubble{
+	position: absolute;
+	right: 30%;
+	top: 10%;
+	text-align: right;
+
 	color: #B0E0E6;
+	text-shadow: 1px 1px #611BBD;
+}
+
+/* GENERIC CLASSES */
+.elenaGraphic{
+	background: url("http://download.lavadomefive.com/members/blueydragon/images/elliebelly-jumboback.png");
+	background-size: auto auto;
+	background-repeat: no-repeat;
+	background-position: bottom center;
 }
 
 .smallcaps{
@@ -25,6 +45,18 @@
 /* BOOTSTRAP IMITATOR CLASSES */
 /* These classes imitate the style and naming conventions of the Bootstrap framework. They are made to
 extend the functionality of framework classes and provide custom variants. */
+.jumbotron{
+	position: relative;
+}
+
+.well-info{
+	min-height: 120px;
+	color: #31708F;
+	background-color: #D9EDF7;
+	border-color: #BCE8F1;
+	text-shadow: 1px 1px #BCE8F1;
+}
+
 .btn-purple {
   color: #ffffff;
   background-color: #611BBD;
@@ -115,11 +147,4 @@ fieldset[disabled] .btn-blue.active {
 .btn-blue .badge {
   color: #0033FF;
   background-color: #ffffff;
-}
-
-.well-info{
-	min-height: 120px;
-	color: #31708F;
-	background-color: #D9EDF7;
-	border-color: #BCE8F1;
 }

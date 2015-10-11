@@ -35,6 +35,9 @@ var tickerNumber = 0;
 var tickerAge = 0;
 var tickerExpires = 0;
 
+var speechAge = 0;
+var speechExpires = 0;
+
 // Text Strings
 var charrMouseover = "These eager charrs will wait on Elena hand and foot, even when they can't reach either.";
 var cowMouseover = "Milk does a belly good, and a personal creamery of cows keeps the milk flowing."
@@ -43,8 +46,9 @@ var barrelMouseover = "This thirty-one-gallon cola barrel will magically fill it
 var expndrMouseover = "This high-tech device expands Elena's gut by expanding her constituent molecules.";
 var planarMouseover = "This powerful spell from the Morphonomicon pulls fat directly from the astral planes.";
 
-var elenaBuy = ["My belly's shrinking! What are you doing?",
-	"My weight isn't currency! Stop that!"];
+var elenaFeed = ["Urp!","Mmph!"];
+var elenaBuy = ["My belly\'s shrinking! What are you doing?",
+	"My weight isn\'t currency! Stop that!"];
 
 // HELPER FUNCTIONS
 // UPDATE modifies a given element's HTML. Due to the frequency of innerHTML changes, this function
@@ -70,6 +74,14 @@ function gain(amount){
 	pounds = pounds + amount;
 	update("weightDisplay", format(Math.floor(pounds)) + " lb");
 	updateButtons();
+}
+
+// GROW BUTTON handles the logic behind clicking the grow button.
+function growButton(){
+	gain(1);
+	if(Math.random() > 0.5){
+		talk(0);
+	}
 }
 
 // CALCULATE COST calculates the cost of a given upgrade. All upgrades rise in
@@ -114,7 +126,6 @@ function buy(item){
 				// reaction ticker message from Elena
 				if(Math.random() > 0.5){
 					talk(1);
-					tickerExpires = randomRange(5,10);
 				}
 			}
 			// This update is performed outside of the loop as it does not necessarily depend upon
@@ -123,24 +134,41 @@ function buy(item){
 		}
 }
 
-// TALK randomly picks from a list of headlines and updates the headline area.
+// TALK randomly picks from a list of Elena's reactions and updates her speech
+// bubble element. It accepts an integer argument as a flag describing which
+// group of reaction texts should be used.
 function talk(flag){
+	var speechText = "";
+
+	if(document.getElementById("elenaSpeechBubble").innerHTML == ""){
+		switch(flag){
+			case 0: // grow button clicked
+				update("elenaSpeechBubble", pickFromArray(elenaFeed));
+				break;
+			case 1: // upgrade purchased
+				update("elenaSpeechBubble", pickFromArray(elenaBuy));
+				break;
+			default: // assume grow button clicked
+				update("elenaSpeechBubble", pickFromArray(elenaFeed));
+				break;
+		}
+
+		// Reset the speech bubble age. All speech messages last five seconds.
+		speechAge = 0;
+		speechExpires = 5;
+	}
+}
+
+// HEADLINE randomly picks from a list of headlines and updates the ticker.
+function headline(){
 	var tickerText = "";
 	var possibilities = [];
 
-	if(flag == 0){ // Normal
-		if(tickerNumber % 2 == 0){
-			possibilities.push(pickFromArray(["Burp I","Burp II"]));
-		}
-		else{
-			possibilities.push(pickFromArray(["Belch I","Belch II"]));
-		}
+	if(tickerNumber % 2 == 0){
+		possibilities.push(pickFromArray(["Burp I","Burp II"]));
 	}
-	else if(flag == 1){ // Triggered from purchase
-		possibilities.push(pickFromArray([
-			'<span class="elena">My belly\'s shrinking! What are you doing?</span>',
-			'<span class="elena">My weight isn\'t currency! Stop that!</span>'
-			]));
+	else{
+		possibilities.push(pickFromArray(["Belch I","Belch II"]));
 	}
 
 	// Reset the ticker message's age, increment the ticker number, and pick a string from the array
@@ -151,7 +179,7 @@ function talk(flag){
 
 	// Randomly pick a duration for the next ticker message. All messages will last between ten and
 	// twenty seconds.
-	//tickerExpires = randomRange(10,20);
+	tickerExpires = randomRange(10,20);
 	update("headlineArea",tickerText);
 }
 
@@ -171,11 +199,15 @@ function updateButtons(){
 function gameLoop(){
 	gain(gainRate);
 
-	tickerAge++;
-	if(tickerAge >= tickerExpires){
-		tickerExpires = randomRange(10,20);
-		talk(0);
+	if(document.getElementById("elenaSpeechBubble").innerHTML != ""){
+		speechAge++;
+		if(speechAge >= speechExpires)
+			update("elenaSpeechBubble","");
 	}
+
+	tickerAge++;
+	if(tickerAge >= tickerExpires)
+		headline();
 }
 
 // The BATCH SPELL runs upon page load, filling in variable blanks and setting up loops.
