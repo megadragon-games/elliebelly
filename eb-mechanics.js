@@ -46,9 +46,12 @@ var barrelMouseover = "This thirty-one-gallon cola barrel will magically fill it
 var expndrMouseover = "This high-tech device expands Elena's gut by expanding her constituent molecules.";
 var planarMouseover = "This powerful spell from the Morphonomicon pulls fat directly from the astral planes.";
 
-var elenaFeed = ["Urp!","Mmph!"];
-var elenaBuy = ["My belly\'s shrinking! What are you doing?",
+var grunts = ["mmph","oomph","unf","urp","urrp","nrgh","urf","erf"];
+var growSpeech = ["GRUNT!","*belch!*","*rumble!*","*slosh!*"];
+var genericBuySpeech = ["My belly\'s shrinking! What are you doing?",
 	"My weight isn\'t currency! Stop that!"];
+var barrelSpeech = ["This tastes like bloatberry ale! Are you trying to - hic! - get me drunk?",
+	"Blech, that one was nothing but carbonated water!"]
 
 // HELPER FUNCTIONS
 // UPDATE modifies a given element's HTML. Due to the frequency of innerHTML changes, this function
@@ -80,7 +83,7 @@ function gain(amount){
 function growButton(){
 	gain(1);
 	if(Math.random() > 0.5){
-		talk(0);
+		talk("grow");
 	}
 }
 
@@ -125,7 +128,10 @@ function buy(item){
 				// Additionally, there is a chance that buying an upgrade will prompt a special
 				// reaction ticker message from Elena
 				if(Math.random() > 0.5){
-					talk(1);
+					if(Math.random() > 0.5)
+						talk(item);
+					else
+						talk("genericBuy");
 				}
 			}
 			// This update is performed outside of the loop as it does not necessarily depend upon
@@ -141,17 +147,24 @@ function talk(flag){
 	var speechText = "";
 
 	if(document.getElementById("elenaSpeechBubble").innerHTML == ""){
-		switch(flag){
-			case 0: // grow button clicked
-				update("elenaSpeechBubble", pickFromArray(elenaFeed));
+		speechText = pickFromArray(window[flag + "Speech"]);
+		speechText = speechText.replace("GRUNT", pickFromArray(grunts));
+		speechText = speechText.charAt(0).toUpperCase() + speechText.slice(1);
+		update("elenaSpeechBubble", speechText);
+		/*switch(flag){
+			case "grow": // grow button clicked
+				speechText = pickFromArray(elenaFeed);
+				speechText = speechText.replace("GRUNT",pickFromArray(grunts));
+				speechText = speechText.charAt(0).toUpperCase() + speechText.slice(1);
+				update("elenaSpeechBubble", speechText);
 				break;
-			case 1: // upgrade purchased
-				update("elenaSpeechBubble", pickFromArray(elenaBuy));
+			case "barrel": // barrel upgrade purchased
+				update("elenaSpeechBubble", pickFromArray(window[flag + "ElenaTexts"]));
 				break;
 			default: // assume grow button clicked
 				update("elenaSpeechBubble", pickFromArray(elenaFeed));
 				break;
-		}
+		} */
 
 		// Reset the speech bubble age. All speech messages last five seconds.
 		speechAge = 0;
@@ -165,10 +178,10 @@ function headline(){
 	var possibilities = [];
 
 	if(tickerNumber % 2 == 0){
-		possibilities.push(pickFromArray(["Burp I","Burp II"]));
+		possibilities.push(pickFromArray(["Elena looks at you nervously."]));
 	}
 	else{
-		possibilities.push(pickFromArray(["Belch I","Belch II"]));
+		possibilities.push(pickFromArray(["Feeling overweight? Melt those extra pounds by buying a feeder upgrade!"]));
 	}
 
 	// Reset the ticker message's age, increment the ticker number, and pick a string from the array
@@ -185,6 +198,13 @@ function headline(){
 
 // UPDATE BUTTONS
 function updateButtons(){
+	var percentage = Math.floor(pounds / 32);
+	if(percentage > 1000)
+		percentage = 1000;
+	//var percentageString = percentage.toString() + "px " + percentage.toString() + "px";
+	var percentageString = "auto " + percentage.toString() + "%";
+	document.getElementById("elenaJumbo").style.backgroundSize = percentageString;
+
 	for(x = 0; x < upgradeTypes.length; x++){
 		var item = upgradeTypes[x];
 		var upgradeCost = calculateCost(window[item + "Base"],defaultScale,window[item + "s"]);

@@ -9,25 +9,32 @@ body{
 /* STYLES BY ID */
 #headlineArea{
 	margin-top: 5px;
-	min-height: 40px;
+	min-height: 60px;
 }
 
 #elenaSpeechBubble{
 	position: absolute;
-	right: 30%;
+	right: 20%;
 	top: 10%;
 	text-align: right;
 
 	color: #B0E0E6;
-	text-shadow: 1px 1px #611BBD;
+	/*text-shadow: 1px 0px #611BBD;*/
+	text-shadow:
+		-1px -1px #611BBD,
+		1px -1px #611BBD,
+		-1px 1px #611BBD,
+		1px 1px #611BBD;
+
 }
 
 /* GENERIC CLASSES */
 .elenaGraphic{
 	background: url("http://download.lavadomefive.com/members/blueydragon/images/elliebelly-jumboback.png");
-	background-size: auto auto;
+	background-size: auto 15%;
 	background-repeat: no-repeat;
 	background-position: bottom center;
+	border: 1px solid #BCE8F1;
 }
 
 .smallcaps{
@@ -35,7 +42,8 @@ body{
 }
 
 .shadow{
-	text-shadow: 1px 1px gray;
+	/*text-shadow: 1px 1px gray;*/
+	text-shadow: 1px 1px #BCE8F1;
 }
 
 .noPadding{
